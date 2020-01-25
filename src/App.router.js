@@ -5,6 +5,7 @@ import App from "./App";
 import Employee from "./components/Employees";
 import HeaderComponent from "./components/Header.component";
 import FooterComponent from "./components/Footer.component";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 export default class AppRouting extends Component {
   render() {
