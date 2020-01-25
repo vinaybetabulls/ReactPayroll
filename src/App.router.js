@@ -10,14 +10,14 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 export default class AppRouting extends Component {
   render() {
     return (
-      <div>
+      <React.Fragment>
         <HeaderComponent />
         <Router>
           <Route exact path="/" component={App} />
           <Route path="/employee" component={Employee} />
         </Router>
         <FooterComponent />
-      </div>
+      </React.Fragment>
     );
   }
 }
