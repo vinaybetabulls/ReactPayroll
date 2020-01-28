@@ -5,18 +5,23 @@ import App from "./App";
 import Employee from "./components/Employees";
 import HeaderComponent from "./components/Header.component";
 import FooterComponent from "./components/Footer.component";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap/dist/css/bootstrap.min.css";
+
+import { MyProvider } from "./components/contextapi";
 
 export default class AppRouting extends Component {
   render() {
+    const obj = {name:'Ramana', age: 29}
     return (
       <React.Fragment>
-        <HeaderComponent />
-        <Router>
-          <Route exact path="/" component={App} />
-          <Route path="/employee" component={Employee} />
-        </Router>
-        <FooterComponent />
+        <MyProvider value={obj}>
+          <HeaderComponent/>
+          <Router>
+            <Route exact path="/" component={App} />
+            <Route path="/employee" component={Employee} />
+          </Router>
+          <FooterComponent />
+        </MyProvider>
       </React.Fragment>
     );
   }
