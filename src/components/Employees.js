@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { MyConsumer } from "./contextapi";
+import {Consumer} from "./contextapi";
 
 export default class Employees extends Component {
   constructor(props) {
@@ -17,21 +17,30 @@ export default class Employees extends Component {
   componentDidMount() {
     console.log("component did  mount Employees");
   }
+  chnagestate(dispatch){
+    
+    dispatch({
+     type:"changestate",payload:"ngchgf"
+    })
+
+  }
   render() {
     console.log("render Employees");
 
     return (
-      <MyConsumer>
+      <Consumer>
         {props => {
           return (
             <div>
+              {console.log(props)}
               <h1>
-                Employee name is {props.name} and my age is {props.age}
+                Employee name is {props.employee.employeename} and my age is {props.employee.age}
               </h1>
-            </div>
+              <button onClick={props.dispatch({type:'changestate', payload:{name:'Teja'}})}>chnagestate</button>
+            </div> 
           );
         }}
-      </MyConsumer>
+      </Consumer>
     );
   }
 }

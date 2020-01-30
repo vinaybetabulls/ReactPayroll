@@ -7,21 +7,21 @@ import HeaderComponent from "./components/Header.component";
 import FooterComponent from "./components/Footer.component";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { MyProvider } from "./components/contextapi";
+import { Provider } from "./components/contextapi";
 
 export default class AppRouting extends Component {
   render() {
-    const obj = {name:'Ramana', age: 29}
+   
     return (
       <React.Fragment>
-        <MyProvider value={obj}>
-          <HeaderComponent/>
+        <Provider>
+          <HeaderComponent />
           <Router>
             <Route exact path="/" component={App} />
             <Route path="/employee" component={Employee} />
           </Router>
           <FooterComponent />
-        </MyProvider>
+        </Provider>
       </React.Fragment>
     );
   }
