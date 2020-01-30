@@ -1,67 +1,46 @@
-import React, { Component } from "react";
-import { act } from "react-dom/test-utils";
+import React from 'react';
 const Context = React.createContext();
-// const reducer = (state, action) => {
-//   switch (action.type) {
-//     case "changestate":
-//       console.log(
-//         "hii",
-//         Object.assign(
-//           {},
-//           {
-//             ...state,
-//             employeename: action.payload.name
-//           }
-//         )
-//       );
-//       return Object.assign({}, state, {
-//         employeename: action.payload.name
-//       });
 
-//     default:
-//       return state;
-//   }
-// };
-export class Provider extends Component {
-  constructor(props){
-    super(props)
-    this.state ={
-      employe: { employeename: "Mani", name: "", age: 16 },
-      dispatch: action => {
-        this.reducer(this.state.employe, action);
-      }
+
+export class Provider extends React.Component {
+
+  state = {
+    employee: {
+      employeeName: 'Mani',
+      age: 30
+    },
+    dispatch: (action) => {
+      let data = this.reducer(this.state, action)
+      console.log('after dispatch..', data)
+      this.setState({
+        state: {
+          employee: {
+            employeeName: data.employeeName
+          }
+        }
+      })
     }
   }
-  reducer = (employe, action) => {
+
+  reducer = (state, action) => {
+    console.log('reducer state....', state)
     switch (action.type) {
       case 'changestate':
-          let newObj =  Object.assign({},employe,{employeename:action.payload.name, age:30});
-          return newObj
-    
+        console.log(Object.assign({}, this.state.employee, { employeeName: action.payload.name, age: 25 }))
+        return Object.assign({}, this.state.employee, { employeeName: action.payload.name, age: 25 })
+
       default:
-        break;
+        return this.state
     }
-  };
+  }
   render() {
-    {
-      console.log("context api data", this.state);
-    }
+
+    { console.log('render.... ', this.state); }
     return (
-      <Context.Provider
-        value={{ employee: this.state.employe, dispatch: this.state.dispatch }}
-      >
+      <Context.Provider value={{ employee: this.state.employee, dispatch: this.state.dispatch }}>
         {this.props.children}
       </Context.Provider>
-    );
+    )
   }
 }
-export const Consumer = Context.Consumer;
-
-// import React from 'react';
-
-// const Context = React.createContext();
-
-// export const MyProvider = Context.Provider;
-// export const MyConsumer = Context.Consumer;
-
-// export default Context;
+export const Consumer = Context.Consumer; 
