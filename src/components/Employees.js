@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import {Consumer} from "./contextapi";
+import higheroderComponent from "../components/Hoc";
 
-export default class Employees extends Component {
+class Employees extends Component {
   constructor(props) {
     super(props);
     console.log("constructor Employees");
@@ -18,13 +19,14 @@ export default class Employees extends Component {
     console.log("render Employees");
     return (
       <Consumer>
-        {props => {
+        {value => {
           return (
             <div>
               <h1>
-                Employee name is {props.employee.employeeName} and my age is {props.employee.age}
+                Employee name is {value.employee.employeeName} and my age is {value.employee.age}
               </h1>
-              <button onClick={()=>props.dispatch({type:'changestate',payload:{name:'vinay', age: 27}})}>chnagestate</button>
+              <button onClick={()=>value.dispatch({type:'changestate',payload:{name:'vinay', age: 27}})}>chnagestate</button>
+          <button onClick={this.props.increment}>increament by {this.props.count}</button>
             </div> 
           );
         }}
@@ -32,3 +34,4 @@ export default class Employees extends Component {
     );
   }
 }
+ export default higheroderComponent(Employees, 10)

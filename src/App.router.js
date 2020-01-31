@@ -5,6 +5,7 @@ import App from "./App";
 import Employee from "./components/Employees";
 import HeaderComponent from "./components/Header.component";
 import FooterComponent from "./components/Footer.component";
+import Increment from "./components/Increment";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 import { Provider } from "./components/contextapi";
@@ -19,6 +20,7 @@ export default class AppRouting extends Component {
           <Router>
             <Route exact path="/" component={App} />
             <Route path="/employee" component={Employee} />
+            <Route path="/increment" component={Increment} />
           </Router>
           <FooterComponent />
         </Provider>
