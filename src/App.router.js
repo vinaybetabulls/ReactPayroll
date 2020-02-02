@@ -8,14 +8,18 @@ import FooterComponent from "./components/Footer.component";
 import Increment from "./components/Increment";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import { Provider } from "./components/contextapi";
+import { Provider } from "react-redux";
+
+import store from "./redux/index";
+
+// import { Provider } from "./components/contextapi";
 
 export default class AppRouting extends Component {
   render() {
    
     return (
       <React.Fragment>
-        <Provider>
+        <Provider store={store}> {/* step 4 */}
           <HeaderComponent />
           <Router>
             <Route exact path="/" component={App} />
